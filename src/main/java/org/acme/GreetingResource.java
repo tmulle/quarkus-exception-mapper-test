@@ -51,7 +51,6 @@ public class GreetingResource {
     @Path("/boom3")
     @Produces(MediaType.TEXT_PLAIN)
     public String blowUp3() {
-        Response r = Response.status(Response.Status.BAD_REQUEST).entity("BOOM 2!").build();
         throw new BadRequestException("BOOM 3!");
     }
 }
