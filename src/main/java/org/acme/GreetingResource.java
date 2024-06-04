@@ -53,4 +53,17 @@ public class GreetingResource {
     public String blowUp3() {
         throw new BadRequestException("BOOM 3!");
     }
+
+    /**
+     * This one doesn't trigger Exception mapper
+     * 
+     * @return
+     */
+    @GET
+    @Path("/boom4")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String blowUp4() {
+        Response r = Response.status(Response.Status.BAD_REQUEST).entity("BOOM 4!").build();
+        throw new WebApplicationException(r);
+    }
 }
