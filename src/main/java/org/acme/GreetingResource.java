@@ -1,7 +1,9 @@
 package org.acme;
 
+import jakarta.validation.Valid;
 import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.WebApplicationException;
@@ -65,5 +67,17 @@ public class GreetingResource {
     public String blowUp4() {
         Response r = Response.status(Response.Status.BAD_REQUEST).entity("BOOM 4!").build();
         throw new WebApplicationException(r);
+    }
+
+     /**
+     * This one doesn't trigger Exception mapper
+     * 
+     * @return
+     */
+    @POST
+    @Path("/validator")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String validator(@Valid IncomingRequest request) {
+        return "Valid!";
     }
 }
